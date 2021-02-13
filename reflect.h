@@ -33,6 +33,7 @@ struct reflect
         using size_type = std::size_t;
 
         Instance();
+        Instance(const Instance&) = delete;
 
         ~Instance();
 
@@ -81,6 +82,7 @@ reflect::_meta<C>::_get_pointer(void* p)
 template<class C>
 reflect::Instance<C>::Instance()
 {
+    _class  = Class<C>();
     _i_size = sizeof(class_type);
     _mask   = new char[_i_size];
     _p      = _meta<C>::_get_pointer(_mask);
